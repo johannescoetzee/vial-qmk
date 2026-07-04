@@ -1,7 +1,7 @@
 #pragma once
 #include <stdlib.h>
 
-#define GROUP_COUNT 4
+#define GROUP_COUNT 5
 #define GROUP_SIZE 7
 
 enum layers {
@@ -17,6 +17,8 @@ enum layers {
     RSM,
     FUN,
     DRS,
+    GQW,
+    GQM,
     LAST
 };
 

@@ -48,6 +48,8 @@ const char* layer_names[] = {
     [SBB] = "SCB",
     [SC2] = "SC2",
     [DRS] = "DRS",
+    [GQW] = "GQW",
+    [GQM] = "GQM",
     [LAST] = "LST"
 };
 
@@ -63,6 +65,9 @@ GroupRingBuffer groups = {
             "General Gaming",
             { GDV, GDM, GDN, -1, -1, -1, -1 }
         },
+	{   "QW Gaming",
+	    { GQW, GQM, GDN, -1, -1, -1, -1 }
+	},
         {
             "RTS Grid",
             { SBB, GDN, -1, -1, -1, -1, -1 }
@@ -142,19 +147,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DVK] = LAYOUT_myr(
       KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5    ,           _______,      _______,          KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
-      _______, KC_SCLN, KC_COMM, KC_DOT , KC_P   , KC_Y    ,           _______,      _______,          KC_F    , KC_G    , KC_C   , KC_R   , KC_L   , _______,
-      _______, MT_LG_A, MT_LA_O, MT_LC_E, MT_LS_U, KC_I    ,           _______,      _______,          KC_D    , MT_RS_H , MT_RC_T, MT_RA_N, MT_RG_S, _______,
-      _______, KC_QUOT, KC_Q   , KC_J   , KC_K   , KC_X    , _______ , _______,      _______, _______, KC_B    , KC_M    , KC_W   , KC_V   , KC_Z   , _______,
+      KC_TAB , KC_SCLN, KC_COMM, KC_DOT , KC_P   , KC_Y    ,           _______,      _______,          KC_F    , KC_G    , KC_C   , KC_R   , KC_L   , _______,
+      KC_LSFT, MT_LG_A, MT_LA_O, MT_LC_E, MT_LS_U, KC_I    ,           _______,      _______,          KC_D    , MT_RS_H , MT_RC_T, MT_RA_N, MT_RG_S, _______,
+      KC_LCTL, KC_QUOT, KC_Q   , KC_J   , KC_K   , KC_X    , _______ , _______,      _______, _______, KC_B    , KC_M    , KC_W   , KC_V   , KC_Z   , _______,
                                  _______, KC_ESC , LT_NV_SP, LT_RS_TB, MO(DRS),      MO(DRS), LT_LS_BS, LT_NM_EN, LT_FN_DL, _______,
 
       _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
     ),
 
     [NAV] = LAYOUT_myr(
-      KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5    ,           _______,      _______,          KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
-      _______, _______, _______, _______, _______, _______,            _______,      _______,       KC_CAPS, _______, _______, _______, _______, _______,
-      _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,            _______,      _______,       CW_TOGG, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, KC_INS , KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______,
+      KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5   ,            _______,      _______,       KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
+      KC_TAB , _______, _______, _______, _______, _______,            _______,      _______,       KC_CAPS, _______, _______, _______, _______, _______,
+      KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,            _______,      _______,       CW_TOGG, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
+      KC_LCTL, _______, _______, _______, _______, _______, _______, _______,     _______, _______, KC_INS , KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______,
                                  _______, _______, _______, _______, _______,     _______, KC_BSPC, KC_ENT , KC_DEL , _______,
 
       _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
@@ -162,9 +167,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NUM] = LAYOUT_myr(
       KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5    ,           _______,      _______,          KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
-      _______, _______, KC_7, KC_8, KC_9, _______,                     _______,      _______,       _______, _______, _______, _______, _______, _______,
-     _______, KC_0   , KC_4, KC_5, KC_6, _______,                      _______,      _______,       _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,
-      _______, _______, KC_1, KC_2, KC_3, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______,
+      KC_TAB , _______, KC_7, KC_8, KC_9, _______,                     _______,      _______,       _______, _______, _______, _______, _______, _______,
+      KC_LSFT, KC_0   , KC_4, KC_5, KC_6, _______,                      _______,      _______,       _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,
+      KC_LCTL, _______, KC_1, KC_2, KC_3, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, KC_SPC , KC_TAB , _______,     _______, _______, _______, _______, _______,
 
       _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
@@ -172,9 +177,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [LSM] = LAYOUT_myr(
       KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5    ,           _______,      _______,          KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
-      _______, KC_QUOT, KC_LT  , KC_GT  , KC_MINS, _______,            _______,      _______,       _______, _______, _______, _______, _______, _______,
-      _______, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL , KC_HASH,            _______,      _______,       _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,
-      _______, KC_CIRC, KC_BSLS, KC_ASTR, KC_SLSH, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______, _______,
+      KC_TAB , KC_QUOT, KC_LT  , KC_GT  , KC_MINS, _______,            _______,      _______,       _______, _______, _______, _______, _______, _______,
+      KC_LSFT, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL , KC_HASH,            _______,      _______,       _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,
+      KC_LCTL, KC_CIRC, KC_BSLS, KC_ASTR, KC_SLSH, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, KC_UNDS, KC_TILD, _______,     _______, _______, _______, _______, _______,
 
       _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
@@ -182,9 +187,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [RSM] = LAYOUT_myr(
       KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5    ,           _______,      _______,          KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
-      _______, _______, _______, _______, _______, _______,            _______,      _______,       KC_AMPR, KC_AT  , KC_LCBR, KC_RCBR, KC_GRV , _______,
-      _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,            _______,      _______,       KC_PIPE, KC_PERC, KC_LPRN, KC_RPRN, KC_QUES, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, KC_TILD, KC_DLR , KC_LBRC, KC_RBRC, _______, _______,
+      KC_TAB , _______, _______, _______, _______, _______,            _______,      _______,       KC_AMPR, KC_AT  , KC_LCBR, KC_RCBR, KC_GRV , _______,
+      KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,            _______,      _______,       KC_PIPE, KC_PERC, KC_LPRN, KC_RPRN, KC_QUES, _______,
+      KC_LCTL, _______, _______, _______, _______, _______, _______, _______,     _______, _______, KC_TILD, KC_DLR , KC_LBRC, KC_RBRC, _______, _______,
                                  _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______,
 
       _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
@@ -192,27 +197,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [FUN] = LAYOUT_myr(
       KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5    ,           _______,      _______,          KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
-      _______, KC_F9, KC_F10, KC_F11 , KC_F12 , _______,               _______,      _______,    _______, _______, _______, _______, _______, _______,
-      _______, KC_F5, KC_F6 , KC_F7  , KC_F8  , _______,               _______,      _______,    _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,
-      _______, KC_F1, KC_F2 , KC_F3  , KC_F4  , _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______, _______,
+      KC_TAB , KC_F9, KC_F10, KC_F11 , KC_F12 , _______,               _______,      _______,    _______, _______, _______, _______, _______, _______,
+      KC_LSFT, KC_F5, KC_F6 , KC_F7  , KC_F8  , _______,               _______,      _______,    _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,
+      KC_LCTL, KC_F1, KC_F2 , KC_F3  , KC_F4  , _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______, _______,
                               _______, _______, KC_SPC , KC_TAB , _______,     _______, _______, _______, _______, _______,
-
-      _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
-    ),
-
-    [GDV] = LAYOUT_myr(
-      KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5    ,           _______,      _______,          KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
-      KC_ESC , KC_SCLN, KC_COMM, KC_DOT , KC_P   , KC_Y  ,             _______,      _______,       KC_F   , KC_G   , KC_C   , KC_R   , KC_L   , KC_GRV ,
-      KC_LSFT, KC_A   , KC_O   , KC_E   , KC_U   , KC_I  ,             _______,      _______,       KC_D   , KC_H   , KC_T   , KC_N   , KC_S   , KC_RSFT,
-      KC_LCTL, KC_QUOT, KC_Q   , KC_J   , KC_K   , KC_X  , _______, _______,      _______, _______, KC_B   , KC_M   , KC_W   , KC_V   , KC_Z   , KC_RCTL,
-                                 _______, MO(GDM), KC_SPC, MO(GDN), KC_TAB ,      KC_LALT, KC_BSPC, KC_ENT , KC_DEL , _______,
 
       _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
     ),
 
     [SBB] = LAYOUT_myr(
       KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5    ,           _______,      _______,          KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
-      KC_ESC , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,            _______,      _______,       KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , _______,
+      KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,            _______,      _______,       KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , _______,
       KC_LSFT, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   ,            _______,      _______,       KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, _______,
       KC_LCTL, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , A_GDN  , _______,     _______, _______, KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, _______,
                                  _______, S_GDN  , MO(GDN), C_GDN  , CS_GDN ,     _______, _______, _______, _______, _______,
@@ -222,7 +217,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [SC2] = LAYOUT_myr(
       KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5    ,           _______,      _______,          KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
-      KC_ESC , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,            _______,      _______,       KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , _______,
+      KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,            _______,      _______,       KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , _______,
       KC_LSFT, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   ,            _______,      _______,       KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, _______,
       KC_LCTL, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_LSFT, KC_LSFT,     _______, _______, KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, _______,
                                  _______, MO(GDN), KC_SPC , KC_LCTL, KC_LALT,     _______, _______, _______, _______, _______,
@@ -230,9 +225,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
     ),
 
-    [GDM] = LAYOUT_myr(
+    [GDV] = LAYOUT_myr(
       KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5    ,           _______,      _______,          KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
-      KC_ESC , KC_L   , KC_R   , KC_C   , KC_G   , KC_F   ,            _______,      _______,        KC_Y   , KC_P   , KC_DOT , KC_COMM, KC_SCLN, KC_GRV ,
+      KC_TAB , KC_SCLN, KC_COMM, KC_DOT , KC_P   , KC_Y  ,             _______,      _______,       KC_F   , KC_G   , KC_C   , KC_R   , KC_L   , KC_GRV ,
+      KC_LSFT, KC_A   , KC_O   , KC_E   , KC_U   , KC_I  ,             _______,      _______,       KC_D   , KC_H   , KC_T   , KC_N   , KC_S   , KC_RSFT,
+      KC_LCTL, KC_QUOT, KC_Q   , KC_J   , KC_K   , KC_X  , _______, _______,      _______, _______, KC_B   , KC_M   , KC_W   , KC_V   , KC_Z   , KC_RCTL,
+                                 KC_LALT, MO(GDM), KC_SPC, MO(GDN), KC_TAB ,      KC_LALT, KC_BSPC, KC_ENT , KC_DEL , _______,
+
+      _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
+    ),
+
+    [GDM] = LAYOUT_myr(
+      KC_ESC , KC_0   ,  KC_9  , KC_8   , KC_7   , KC_6    ,           _______,      _______,          KC_5    , KC_4    , KC_3   , KC_2   , KC_1   , KC_ESC ,
+      KC_TAB , KC_L   , KC_R   , KC_C   , KC_G   , KC_F   ,            _______,      _______,        KC_Y   , KC_P   , KC_DOT , KC_COMM, KC_SCLN, KC_GRV ,
       KC_LSFT, KC_S   , KC_N   , KC_T   , KC_H   , KC_D   ,            _______,      _______,        KC_I   , KC_U   , KC_E   , KC_O   , KC_A   , KC_RSFT,
       KC_LCTL, KC_Z   , KC_V   , KC_W   , KC_M   , KC_B   , _______, _______,      _______, _______, KC_X   , KC_K   , KC_J   , KC_Q   , KC_QUOT, KC_RCTL,
                                  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
@@ -241,13 +246,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [GDN] = LAYOUT_myr(
-      KC_ESC , KC_1   ,  KC_2  , KC_3   , KC_4   , KC_5    ,           _______,      _______,          KC_6    , KC_7    , KC_8   , KC_9   , KC_0   , KC_ESC ,
-      KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_9   ,            _______,      _______,        _______, KC_F9  , KC_F10 , KC_F11 , KC_F12 , KC_GRV ,
-      KC_LSFT, KC_5   , KC_6   , KC_7   , KC_8   , KC_0   ,            _______,      _______,        _______, KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_RSFT,
-      KC_LCTL, KC_F19 , KC_F20 , KC_F21 , KC_F22 , KC_F23 , KC_F24 , _______,      _______, _______, _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_RCTL,
+      KC_ESC , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,     _______,                _______,     KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_ESC ,
+      KC_TAB , KC_F6  , KC_7   , KC_8   , KC_9   , KC_F8  ,     _______,                _______,     _______, _______, _______, _______, _______, KC_GRV ,
+      KC_LSFT, KC_0   , KC_4   , KC_5   , KC_6   , KC_F9  ,     _______,                _______,     _______, _______, _______, _______, _______, KC_RSFT,
+      KC_LCTL, KC_F7  , KC_1   , KC_2   , KC_3   , KC_F10 , _______, _______,      _______, _______, _______, _______, _______, _______, _______, KC_RCTL,
                                  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
 
       _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
+    ),
+
+    [GQW] = LAYOUT_myr(
+      KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,          _______,     _______,          KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_ESC ,
+      KC_TAB , KC_T   , KC_Q   , KC_I   , KC_E   , KC_R   ,          _______,     _______,          KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_GRV ,
+      KC_LSFT, KC_G   , KC_A   , KC_W   , KC_D   , KC_F   ,          _______,     _______,          KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_RSFT,
+      KC_LCTL, KC_Z   , KC_X   , KC_S   , KC_C   , KC_V   , _______, _______,     _______, _______, KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_RCTL,
+                                 KC_LALT, MO(GQM), KC_SPC, MO(GDN), KC_TAB ,      KC_LALT, KC_BSPC, KC_ENT , KC_DEL , _______,
+
+      _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
+
+    ),
+
+    [GQM] = LAYOUT_myr(
+      KC_ESC , KC_0   , KC_9   , KC_8   , KC_7   , KC_6   ,          _______,     _______,          _______, _______, _______, _______, _______, KC_ESC ,
+      KC_TAB , KC_P   , KC_O   , KC_I   , KC_U   , KC_Y   ,          _______,     _______,          _______, _______, _______, _______, _______, KC_GRV ,
+      KC_LSFT, KC_SCLN, KC_L   , KC_K   , KC_J   , KC_H   ,          _______,     _______,          _______, _______, _______, _______, _______, KC_RSFT,
+      KC_LCTL, KC_DOT , KC_COMM, KC_M   , KC_N   , KC_B   , _______, _______,     _______, _______, _______, _______, _______, _______, _______, KC_RCTL,
+                                 KC_LALT, MO(GQM), KC_SPC, MO(GDN), KC_TAB ,      KC_LALT, KC_BSPC, KC_ENT , KC_DEL , _______,
+
+      _______, _______, _______, _______,    _______,                             GRP_PRV, GRP_NXT, GRP_RST, _______,    _______
+
     ),
 
 //     [_LAYERINDEX] = LAYOUT_myr(
